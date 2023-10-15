@@ -5,3 +5,7 @@ This a public repository for the Around the World Radio Senior Design Project. T
 Programmer Dependencies
 10-14-23
 Added react-router-dom
+Added react-simple-maps
+
+Programmer log:
+1. Be sure to read https://www.react-simple-maps.io/docs/getting-started/ for help setting up the interactive map. 
