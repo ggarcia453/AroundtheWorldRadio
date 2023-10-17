@@ -45,7 +45,7 @@ function App() {
         <p>
         This website has been created by Antoine Nguyen, Isabel Ruiz, and Gabriel Garcia as a part of their Senior Design Project. This project was advised
         by Prof. Burke of UCI's Electrical Engineering and Computer Science Department. For more information about this project,
-        please follow
+        please follow 
         <a  className="App-link"
           href="https://sites.uci.edu/eecscapstone/2023/05/04/around-the-world-radio/"
           target="_blank"
