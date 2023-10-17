@@ -1,1 +1,16 @@
-{"type":"FeatureCollection","features":[]}
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "coordinates": [
+            -117.84444823454378,
+            33.64202831323988
+          ],
+          "type": "Point"
+        }
+      }
+    ]
+  }
