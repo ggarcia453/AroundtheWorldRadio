@@ -49,7 +49,11 @@ function App() {
         <a  className="App-link"
           href="https://sites.uci.edu/eecscapstone/2023/05/04/around-the-world-radio/"
           target="_blank"
-          rel="noopener noreferrer"> this link.</a>
+          rel="noopener noreferrer"> this link. </a>
+         This project has been made in collobaration with the Amateur Radio Association at UCI. 
+      </p>
+      <p>
+        Below is our current map.
       </p>
       </header>
       <body>
