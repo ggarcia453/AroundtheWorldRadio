@@ -22,6 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 99vw;
 }
 
 .App-link {
@@ -69,6 +70,6 @@ font-size: 17px;
 }
 
 .leaflet-container {
-  width: 100vw;
+  width: 99vw;
   height: 100vh;
 }

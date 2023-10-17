@@ -53,7 +53,7 @@ function App() {
       </p>
       </header>
       <body>
-        <MapContainer center={[33.64202831323988, -117.84444823454378]} zoom={2} scrollWheelZoom={false} >
+        <MapContainer center={[33.64202831323988, -117.84444823454378]} zoom={5} scrollWheelZoom={false} >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
