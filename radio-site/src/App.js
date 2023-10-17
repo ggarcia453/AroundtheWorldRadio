@@ -10,7 +10,9 @@ import {
 } from "react-router-dom";
 import AboutUs from './pages/AboutUs';
 import Home from './pages/Home';
-import { ComposableMap, Geographies, Geography } from "react-simple-maps"
+// import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import "leaflet/dist/leaflet.css"
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 
 
 const geoUrl =
@@ -18,13 +20,14 @@ const geoUrl =
 
 function App() {
   return (
-    /*<Router>
+    <>
+    {/*<Router>
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<AboutUs />} />
                 </Routes>
-                </Router>*/
+                </Router>*/ }
                 
     <div className="App">
       <header className="App-header">
@@ -49,8 +52,21 @@ function App() {
           rel="noopener noreferrer"> this link.</a>
       </p>
       </header>
+      <body>
+        <MapContainer center={[51.505, -0.09]} zoom={2} scrollWheelZoom={false} >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+        </MapContainer>
+      </body>
     </div>
+    
+    
+    </>
   );
 }
+
+
 
 export default App;
