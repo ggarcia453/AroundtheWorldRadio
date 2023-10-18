@@ -4,6 +4,7 @@ This a public repository for the Around the World Radio Senior Design Project. T
 
 Programmer Dependencies
 Use `npm i`
+
 10-14-23
 * react-router-dom
 * react-simple-maps
@@ -14,3 +15,4 @@ Use `npm i`
 
 Programmer log:
 1. Be sure to read https://www.react-simple-maps.io/docs/getting-started/ for help setting up the interactive map. 
+2. https://leafletjs.com/reference.html and https://react-leaflet.js.org/docs/api-map/
