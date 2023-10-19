@@ -11,7 +11,7 @@ import {
 import AboutUs from './pages/AboutUs';
 import Home from './pages/Home';
 // import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import Map from './components/Map/Map';
+import Map from './components/Map/Map.jsx';
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"

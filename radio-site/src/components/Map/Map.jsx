@@ -1,7 +1,8 @@
 import React from "react";
 import L from 'leaflet';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import "leaflet/dist/leaflet.css"
+import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
+import "leaflet/dist/leaflet.css";
+import monitors from "./monitors.json";
 
 /**
  * Fixing react-leaflet's marker icon. 
@@ -27,23 +28,42 @@ L.Marker.prototype.options.icon = DefaultIcon;
  * End of fix.
  */
 
+// var monitors = {
+//   "type": "FeatureCollection",
+//   "features": [
+//     {
+//       "type": "Feature",
+//       "properties": {},
+//       "geometry": {
+//         "coordinates": [
+//           -117.84444823454378,
+//           33.64202831323988
+//         ],
+//         "type": "Point"
+//       }
+//     }
+//   ]
+// }
+
+
 
 function Map() {
-    return (
-        <>
-        <MapContainer center={[33.64202831323988, -117.84444823454378]} zoom={5} scrollWheelZoom={false} >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={[33.64202831323988, -117.84444823454378]}>
-            <Popup>
-              MSTB @ UCI
-            </Popup>
-          </Marker>
-        </MapContainer>
-        </>
-    );
+  return (
+    <>
+      <MapContainer center={[33.64202831323988, -117.84444823454378]} zoom={5} scrollWheelZoom={false} >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <GeoJSON data={monitors} />
+        {/* <Marker position={[33.64202831323988, -117.84444823454378]}>
+          <Popup>
+            MSTB @ UCI
+          </Popup>
+        </Marker> */}
+      </MapContainer>
+    </>
+  );
 }
 
 export default Map;
