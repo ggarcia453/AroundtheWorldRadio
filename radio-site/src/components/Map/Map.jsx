@@ -28,26 +28,15 @@ L.Marker.prototype.options.icon = DefaultIcon;
  * End of fix.
  */
 
-// var monitors = {
-//   "type": "FeatureCollection",
-//   "features": [
-//     {
-//       "type": "Feature",
-//       "properties": {},
-//       "geometry": {
-//         "coordinates": [
-//           -117.84444823454378,
-//           33.64202831323988
-//         ],
-//         "type": "Point"
-//       }
-//     }
-//   ]
-// }
-
-
 
 function Map() {
+
+  function onEachFeaturePopup(feature, layer){
+    if (feature.properties.name) {
+        layer.bindPopup(feature.properties.name);
+    }
+  }
+
   return (
     <>
       <MapContainer center={[33.64202831323988, -117.84444823454378]} zoom={5} scrollWheelZoom={false} >
@@ -55,12 +44,7 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <GeoJSON data={monitors} />
-        {/* <Marker position={[33.64202831323988, -117.84444823454378]}>
-          <Popup>
-            MSTB @ UCI
-          </Popup>
-        </Marker> */}
+        <GeoJSON data={monitors} onEachFeature={onEachFeaturePopup} />
       </MapContainer>
     </>
   );
