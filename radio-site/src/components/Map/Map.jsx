@@ -47,7 +47,7 @@ function Map() {
       }
         layer.bindPopup(
           s +
-          "Name: " + feature.properties.name
+          "<b>Name: " + feature.properties.name + "</b>"
           );
     }
   }
