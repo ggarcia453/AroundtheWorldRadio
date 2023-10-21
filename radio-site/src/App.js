@@ -12,6 +12,13 @@ import AboutUs from './pages/AboutUs';
 import Home from './pages/Home';
 // import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import Map from './components/Map/Map.jsx';
+import { Dropdown, DropdownItem } from 'react-bootstrap';
+import Select from 'react-select'
+
+const frequency_list = [
+  {value:80, label:"80hz"},
+  {value:70, label:"70hz"}
+];
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
@@ -55,7 +62,18 @@ function App() {
       </p>
       </header>
       <body>
-        <Map/>
+        <div className='menu-container'>
+          <div className='dropdown-container'>
+            <Select 
+              defaultValue={"Frequencies"}
+              options={frequency_list}
+            />
+          </div>
+        
+        </div>
+        <div className='map-container'>
+          <Map/>
+        </div>
       </body>
     </div>
     
@@ -63,6 +81,7 @@ function App() {
     </>
   );
 }
+
 
 
 
