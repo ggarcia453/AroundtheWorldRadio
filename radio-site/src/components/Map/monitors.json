@@ -4,12 +4,47 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Multipurpose Science & Technology Building @ UCI"
+        "callsign": "KK6QVO",
+        "locator": "DM13bp93",
+        "frequency": 40,
+        "name": "UCI Amateur Radio Association"
       },
       "geometry": {
         "coordinates": [
           -117.84444823454378,
           33.64202831323988
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "callsign": "W1BW",
+        "locator": "FN42ki",
+        "frequency": 40,
+        "name": "MIT"
+      },
+      "geometry": {
+        "coordinates": [
+          -71.092003, 
+          42.360001
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "callsign": "G4BRK",
+        "locator": "io91hp",
+        "frequency": 60,
+        "name": "Oxford"
+      },
+      "geometry": {
+        "coordinates": [
+          -1.254449,
+          51.754845
         ],
         "type": "Point"
       }

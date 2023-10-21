@@ -33,7 +33,12 @@ function Map() {
 
   function onEachFeaturePopup(feature, layer){
     if (feature.properties.name) {
-        layer.bindPopup(feature.properties.name);
+        layer.bindPopup(
+          "Callsign: " + feature.properties.callsign +
+          "<br/>Locator: " + feature.properties.locator +
+          "<br/>Receiving: " + feature.properties.frequency + "m" +
+          "<br/>Name: " + feature.properties.name
+          );
     }
   }
 
