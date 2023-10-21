@@ -1,0 +1,23 @@
+{
+    "type": "FeatureCollection",
+    "features": [{
+      "type":"Feature",
+      "properties":{
+        "name": "MIT + UCI Connection"
+      },
+      "geometry":{
+        "coordinates":[
+          [
+            -71.092003, 
+          42.360001
+          ],
+          [
+            -117.84444823454378,
+          33.64202831323988
+          ]
+        ],
+        "type": "LineString"
+      }
+    }
+    ]
+}

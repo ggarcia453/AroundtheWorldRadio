@@ -3,6 +3,7 @@ import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import monitors from "./monitors.json";
+import lines from "./lines.json";
 
 /**
  * Fixing react-leaflet's marker icon. 
@@ -33,11 +34,20 @@ function Map() {
 
   function onEachFeaturePopup(feature, layer){
     if (feature.properties.name) {
+      let s = "";
+      console.log(feature.properties.callsign);
+      if (feature.properties.callsign != null){
+            s = s + "Callsign: " + feature.properties.callsign + "<br/>";
+      }
+      if (feature.properties.locator != null){
+        s = s + "Locator: " + feature.properties.locator + "<br/>";
+      }
+      if (feature.properties.frequency != null){
+        s = s + "Receiving: " + feature.properties.frequency + "m<br/>";
+      }
         layer.bindPopup(
-          "Callsign: " + feature.properties.callsign +
-          "<br/>Locator: " + feature.properties.locator +
-          "<br/>Receiving: " + feature.properties.frequency + "m" +
-          "<br/>Name: " + feature.properties.name
+          s +
+          "Name: " + feature.properties.name
           );
     }
   }
@@ -50,6 +60,7 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <GeoJSON data={monitors} onEachFeature={onEachFeaturePopup} />
+        <GeoJSON data={lines} onEachFeature={onEachFeaturePopup}/>
       </MapContainer>
     </>
   );
