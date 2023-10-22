@@ -17,7 +17,8 @@ import Select from 'react-select'
 
 const frequency_list = [
   {value:80, label:"80hz"},
-  {value:70, label:"70hz"}
+  {value:70, label:"70hz"},
+  {value: 60, label:"60hz"}
 ];
 
 const geoUrl =
@@ -64,7 +65,8 @@ function App() {
       <body>
         <div className='menu-container'>
           <div className='dropdown-container'>
-            <Select 
+            <Select
+              className='dropdown' 
               defaultValue={"Frequencies"}
               options={frequency_list}
             />

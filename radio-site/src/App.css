@@ -72,9 +72,21 @@ font-size: 17px;
 .leaflet-container {
   width: 99vw;
   height: 100vh;
+  z-index: 0;
 }
 
 .map-container{
   padding-top: 80px;
   background-color: #282c34;
+  z-index: -1;
+}
+
+.menu-container {
+  background-color: #282c34;
+}
+
+
+.dropdown {
+  width: 100px;
+  z-index: 1;
 }
