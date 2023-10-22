@@ -18,6 +18,24 @@
         ],
         "type": "LineString"
       }
-    }
+    },{
+        "type":"Feature",
+        "properties":{
+          "name": "Oxford + UCI Connection"
+        },
+        "geometry":{
+          "coordinates":[
+            [
+            -1.254449,
+            51.754845
+            ],
+            [
+              -117.84444823454378,
+            33.64202831323988
+            ]
+          ],
+          "type": "LineString"
+        }
+      }
     ]
 }
