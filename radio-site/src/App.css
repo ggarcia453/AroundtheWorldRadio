@@ -76,17 +76,22 @@ font-size: 17px;
 }
 
 .map-container{
-  padding-top: 80px;
+  padding-top: 10px;
   background-color: #282c34;
   z-index: -1;
 }
 
 .menu-container {
   background-color: #282c34;
+  color: white;
 }
 
 
 .dropdown {
-  width: 100px;
+  display: inline-block;
+  width: 200px;
   z-index: 1;
+  color: black;
+  background-color: #282c34;
+  caret-color: #04AA6D;
 }

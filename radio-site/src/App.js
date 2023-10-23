@@ -64,14 +64,17 @@ function App() {
       </header>
       <body>
         <div className='menu-container'>
-          <div className='dropdown-container'>
+          <span>On </span>
             <Select
               className='dropdown' 
               defaultValue={"Frequencies"}
               options={frequency_list}
             />
-          </div>
-        
+            <span>, show signals recieved by </span>
+
+            <span style={{color: 'green'}}>[ call sign search ]</span>
+
+            <span> using FT8</span>
         </div>
         <div className='map-container'>
           <Map/>
