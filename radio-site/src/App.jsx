@@ -2,29 +2,36 @@
 import './App.css';
 import React from "react";
 import "./App.css";
-import Navbar from "./components/NavBar/navbarElements";
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-} from "react-router-dom";
-import AboutUs from './pages/AboutUs';
-import Home from './pages/Home';
-// import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+// import Navbar from "./components/NavBar/navbarElements";
+// import {
+//     BrowserRouter as Router,
+//     Routes,
+//     Route,
+// } from "react-router-dom";
+// import AboutUs from './pages/AboutUs';
+// import Home from './pages/Home';
 import Map from './components/Map/Map.jsx';
-import { Dropdown, DropdownItem } from 'react-bootstrap';
+// import { Dropdown, DropdownItem } from 'react-bootstrap';
 import Select from 'react-select'
 
 const frequency_list = [
-  {value:80, label:"80hz"},
-  {value:70, label:"70hz"},
-  {value: 60, label:"60hz"}
+  {value:0, label:"all bands"},
+  {value:60, label:"60m"},
+  {value:40, label:"40m"}
 ];
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
 
 function App() {
+
+  var freq = 0;
+
+  function setUserChoice(choice) {
+    freq = choice;
+    console.log(freq + "m selected");
+  }
+
   return (
     <>
     {/*<Router>
@@ -67,8 +74,9 @@ function App() {
           <span>On </span>
             <Select
               className='dropdown' 
-              defaultValue={"Frequencies"}
+              defaultValue={frequency_list[0]}
               options={frequency_list}
+              onChange={(choice) => setUserChoice(choice.value)}
             />
             <span>, show signals recieved by </span>
 
@@ -77,7 +85,7 @@ function App() {
             <span> using FT8</span>
         </div>
         <div className='map-container'>
-          <Map/>
+          <Map frequency={freq}/>
         </div>
       </body>
     </div>
