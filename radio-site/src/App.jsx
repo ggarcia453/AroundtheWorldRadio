@@ -1,7 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import { TextField } from "@mui/material";
 // import Navbar from "./components/NavBar/navbarElements";
 // import {
 //     BrowserRouter as Router,
@@ -24,6 +25,7 @@ const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
 
 function App() {
+  const [name, setName] = useState("");
 
   var freq = 0;
 
@@ -80,7 +82,12 @@ function App() {
             />
             <span>, show signals recieved by </span>
 
-            <span style={{color: 'green'}}>[ call sign search ]</span>
+            <TextField
+              value={name}
+              label="Callsign"
+              onChange={(e) =>{
+                setName(e.target.value);
+              }}/>
 
             <span> using FT8</span>
         </div>

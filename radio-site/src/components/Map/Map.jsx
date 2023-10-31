@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import monitors from "./data/monitors.json";
-import lines from "./data/lines.json";
+// import lines from "./data/lines.json";
 
 /**
  * Fixing react-leaflet's marker icon. 
@@ -28,6 +28,14 @@ L.Marker.prototype.options.icon = DefaultIcon;
 /**
  * End of fix.
  */
+/*L.geoJson(monitors, {onEachFeature});
+
+function onEachFeature(feature, featureLayer){
+
+}*/
+// const search_bar = () => {};
+// const [searchInput, setSearchInput] = useState("");
+
 
 
 function Map(props) {
@@ -44,11 +52,11 @@ function Map(props) {
     }
   }
 
-  function onEachLinePopup(feature, layer) {
-    if (feature.properties.name) {
-      layer.bindPopup("<b>Name: " + feature.properties.name + "</b>");
-    }
-  }
+  // function onEachLinePopup(feature, layer) {
+  //   if (feature.properties.name) {
+  //     layer.bindPopup("<b>" + feature.properties.name + "</b>");
+  //   }
+  // }
 
   return (
     <>
@@ -58,7 +66,7 @@ function Map(props) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <GeoJSON data={monitors} onEachFeature={onEachFeaturePopup} filter={(feature) => props.frequency===0 ? true : props.frequency===feature.properties.frequency}/>
-        <GeoJSON data={lines} onEachFeature={onEachLinePopup} />
+        {/* <GeoJSON data={lines} onEachFeature={onEachLinePopup} /> */}
       </MapContainer>
     </>
   );
