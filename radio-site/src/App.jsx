@@ -11,7 +11,7 @@ import { TextField } from "@mui/material";
 // } from "react-router-dom";
 // import AboutUs from './pages/AboutUs';
 // import Home from './pages/Home';
-import Map from './components/Map/Map.jsx';
+import Map from './components/Map/map.jsx';
 // import { Dropdown, DropdownItem } from 'react-bootstrap';
 import Select from 'react-select'
 
@@ -26,13 +26,12 @@ const geoUrl =
 
 function App() {
   const [name, setName] = useState("");
+  const [freq, setFreq] = useState(0);
 
-  var freq = 0;
-
-  function setUserChoice(choice) {
-    freq = choice;
-    console.log(freq + "m selected");
-  }
+  // function setUserChoice(choice) {
+  //   freq = choice;
+  //   console.log(freq + "m selected");
+  // }
 
   return (
     <>
@@ -78,7 +77,7 @@ function App() {
               className='dropdown' 
               defaultValue={frequency_list[0]}
               options={frequency_list}
-              onChange={(choice) => setUserChoice(choice.value)}
+              onChange={(choice) => setFreq(choice.value)}
             />
             <span>, show signals recieved by </span>
 
@@ -91,7 +90,7 @@ function App() {
 
             <span> using FT8</span>
         </div>
-        <div className='map-container'>
+        <div id='map'>
           <Map frequency={freq}/>
         </div>
       </body>

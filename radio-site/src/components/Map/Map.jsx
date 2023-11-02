@@ -1,9 +1,8 @@
-import React, {useState} from "react";
+import React, { Component, useState } from "react";
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import monitors from "./data/monitors.json";
-// import lines from "./data/lines.json";
 
 /**
  * Fixing react-leaflet's marker icon. 
@@ -38,11 +37,20 @@ function onEachFeature(feature, featureLayer){
 
 
 
+/**
+ * A Map component
+ * @param {*} props 
+ * @returns 
+ */
 function Map(props) {
 
+  /**
+   * On each marker, display a popup with the callsign, locator, and frequency band
+   * @param {Feature<Geometry, any>} feature 
+   * @param {Layer} layer 
+   */
   function onEachFeaturePopup(feature, layer) {
     if (feature.properties.name) {
-      // console.log(feature.properties.callsign);
       layer.bindPopup(
         "Callsign: " + feature.properties.callsign + "<br/>" +
         "Locator: " + feature.properties.locator + "<br/>" +
@@ -52,24 +60,34 @@ function Map(props) {
     }
   }
 
-  // function onEachLinePopup(feature, layer) {
-  //   if (feature.properties.name) {
-  //     layer.bindPopup("<b>" + feature.properties.name + "</b>");
-  //   }
-  // }
+  /**
+   * The filtering function for GeoJSON
+   * // TODO: update filtering with callsign
+   * @param {Feature<Geometry, any>} feature 
+   * @returns 
+   */
+  let filter = (feature) => {
+    return props.frequency === 0 ? true : props.frequency === feature.properties.frequency;
+  }
+
 
   return (
-    <>
-      <MapContainer center={[33.64202831323988, -117.84444823454378]} zoom={5} scrollWheelZoom={false} >
+    <div id="map">
+      <MapContainer center={[33.64202831323988, -117.84444823454378]} zoom={5} scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <GeoJSON data={monitors} onEachFeature={onEachFeaturePopup} filter={(feature) => props.frequency===0 ? true : props.frequency===feature.properties.frequency}/>
-        {/* <GeoJSON data={lines} onEachFeature={onEachLinePopup} /> */}
+        <GeoJSON
+          key={props.frequency}
+          data={monitors}
+          onEachFeature={onEachFeaturePopup}
+          filter={filter}
+        />
       </MapContainer>
-    </>
+    </div>
   );
 }
+
 
 export default Map;
