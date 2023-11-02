@@ -61,13 +61,15 @@ function Map(props) {
   }
 
   /**
-   * The filtering function for GeoJSON
-   * // TODO: update filtering with callsign
+   * The filtering function for GeoJSON, filters by frequency band and callsign
    * @param {Feature<Geometry, any>} feature 
    * @returns 
    */
   let filter = (feature) => {
-    return props.frequency === 0 ? true : props.frequency === feature.properties.frequency;
+    return (
+      (props.frequency === 0 ? true : props.frequency === feature.properties.frequency) &&
+      (props.callsign === "" ? true : props.callsign.toUpperCase() === feature.properties.callsign)
+      );
   }
 
 
@@ -79,7 +81,7 @@ function Map(props) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <GeoJSON
-          key={props.frequency}
+          key={props.frequency + props.callsign}
           data={monitors}
           onEachFeature={onEachFeaturePopup}
           filter={filter}

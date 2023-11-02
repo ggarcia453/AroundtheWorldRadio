@@ -91,7 +91,7 @@ function App() {
             <span> using FT8</span>
         </div>
         <div id='map'>
-          <Map frequency={freq}/>
+          <Map frequency={freq} callsign={name}/>
         </div>
       </body>
     </div>
