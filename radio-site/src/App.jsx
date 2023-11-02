@@ -11,7 +11,7 @@ import { TextField } from "@mui/material";
 // } from "react-router-dom";
 // import AboutUs from './pages/AboutUs';
 // import Home from './pages/Home';
-import Map from './components/Map/map.jsx';
+import Map from './components/Map/Map.jsx';
 // import { Dropdown, DropdownItem } from 'react-bootstrap';
 import Select from 'react-select'
 
@@ -83,6 +83,7 @@ function App() {
 
             <TextField
               value={name}
+              className='text_box'
               label="Callsign"
               onChange={(e) =>{
                 setName(e.target.value);

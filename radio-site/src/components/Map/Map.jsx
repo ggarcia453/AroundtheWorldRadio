@@ -68,7 +68,7 @@ function Map(props) {
   let filter = (feature) => {
     return (
       (props.frequency === 0 ? true : props.frequency === feature.properties.frequency) &&
-      (props.callsign === "" ? true : props.callsign.toUpperCase() === feature.properties.callsign)
+      (props.callsign === "" ? true : feature.properties.callsign.startsWith(props.callsign.toUpperCase()))
       );
   }
 
