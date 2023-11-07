@@ -1,5 +1,8 @@
 let radios
 
+/**
+ * Data Access Object for Radios database
+ */
 export default class RadiosDAO {
     static async injectDB(conn) {
         if (radios) {

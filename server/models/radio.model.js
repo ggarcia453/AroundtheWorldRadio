@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const radioSchema = new Schema({
+    type: { type: String, default:'Feature' },
     properties: {
         callsign:   { type: String, required: true },
         locator:    { type: String, required: true },
