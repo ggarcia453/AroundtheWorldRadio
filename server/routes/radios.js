@@ -11,6 +11,7 @@ router.route('./add').post((req, res) => {
     const properties = {
         callsign: req.body.callsign,
         locator: req.body.locator,
+        frequency: Number(req.body.frequency),
         date: Date.parse(req.body.date)
     };
     const geometry = {

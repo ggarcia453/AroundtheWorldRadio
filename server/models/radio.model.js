@@ -10,7 +10,8 @@ const radioSchema = new Schema({
     properties: {
         callsign:   { type: String, required: true },
         locator:    { type: String, required: true },
-        date:       { type:Date, default:Date.now }
+        frequency:  { type: Number, required: true },
+        date:       { type: Date, default:Date.now }
     },
     geometry: { type: { type: String, default:'Point' }, coordinates: [Number] }
 }, {
