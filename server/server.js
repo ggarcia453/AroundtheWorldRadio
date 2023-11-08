@@ -3,8 +3,6 @@
  * 2. https://medium.com/@beaucarnes/learn-the-mern-stack-by-building-an-exercise-tracker-mern-tutorial-59c13c1237a1
  */
 
-//TODO: CRUD, video @ 45:34
-
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';

@@ -23,4 +23,30 @@ export default class RadiosCtrl {
         }
         res.json(response);
     }
+
+    static async apiPostRadio(req, res, next) {
+        try {
+            const type = "Feature";
+            const properties = {
+                callsign: req.body.properties.callsign,
+                locator: req.body.properties.locator,
+                frequency: Number(req.body.properties.frequency),
+            };
+            const geometry = {
+                type: 'Point',
+                coordinates: [
+                    Number(req.body.geometry.coordinates[0]), 
+                    Number(req.body.geometry.coordinates[1])
+                ]
+            };
+
+            const RadioResponse = await RadiosDAO.addRadio(
+                type, properties, geometry
+            )
+
+            res.json({ status: "success" })
+        } catch(e) {
+            res.status(500).json({ error: e.message });
+        }
+    }
 }

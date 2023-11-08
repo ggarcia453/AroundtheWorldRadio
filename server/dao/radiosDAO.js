@@ -49,4 +49,30 @@ export default class RadiosDAO {
             return { radiosList: [], totalNumRadios: 0 };
         }
     }
+
+    static async addRadio(type, properties, geometry) {
+        try {
+            const radioDoc = {
+                type: type,
+                properties: {
+                    callsign: properties.callsign,
+                    locator: properties.locator,
+                    frequency: Number(properties.frequency)
+                },
+                geometry: {
+                    coordinates: [
+                        Number(geometry.coordinates[0]),
+                        Number(geometry.coordinates[1])
+                    ],
+                    type: geometry.type
+                }
+            };
+            return await radios.insertOne(radioDoc);
+        } catch (e) {
+            console.error(`Unable to post radio: ${e}`);
+            return { error: e };
+        }
+
+        //TODO: More CRUD
+    }
 }
