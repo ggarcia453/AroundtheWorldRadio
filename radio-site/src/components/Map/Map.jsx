@@ -1,8 +1,9 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import L from 'leaflet';
-import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
-import monitors from "./data/monitors.json";
+import monitors from "./data/monitors.json"; // sample JSON file
+import RadiosList from "../RadiosList";
 
 /**
  * Fixing react-leaflet's marker icon. 
@@ -27,22 +28,15 @@ L.Marker.prototype.options.icon = DefaultIcon;
 /**
  * End of fix.
  */
-/*L.geoJson(monitors, {onEachFeature});
-
-function onEachFeature(feature, featureLayer){
-
-}*/
-// const search_bar = () => {};
-// const [searchInput, setSearchInput] = useState("");
-
 
 
 /**
  * A Map component
  * @param {*} props 
- * @returns 
+ * @returns {HTML}
  */
 function Map(props) {
+  const radioJSON = { type: "FeatureCollection", features: RadiosList() };
 
   /**
    * On each marker, display a popup with the callsign, locator, and frequency band
@@ -50,6 +44,13 @@ function Map(props) {
    * @param {Layer} layer 
    */
   function onEachFeaturePopup(feature, layer) {
+    layer.bindPopup(
+      "Callsign: " + feature.properties.callsign + "<br/>" +
+      "Locator: " + feature.properties.locator + "<br/>" +
+      "Receiving: " + feature.properties.frequency + "m"
+    );
+
+    /* DEPRECIATED: `name` is optional.
     if (feature.properties.name) {
       layer.bindPopup(
         "Callsign: " + feature.properties.callsign + "<br/>" +
@@ -58,12 +59,13 @@ function Map(props) {
         "<b>Name: " + feature.properties.name + "</b>"
       );
     }
+    */
   }
 
   /**
    * The filtering function for GeoJSON, filters by frequency band and callsign
    * @param {Feature<Geometry, any>} feature 
-   * @returns 
+   * @returns {boolean} 
    */
   let filter = (feature) => {
     return (
@@ -91,8 +93,8 @@ function Map(props) {
           noWrap={true}
         />
         <GeoJSON
-          key={props.frequency + props.callsign}
-          data={monitors}
+          key={props.frequency + props.callsign + JSON.stringify(radioJSON)}
+          data={radioJSON}
           onEachFeature={onEachFeaturePopup}
           filter={filter}
         />
