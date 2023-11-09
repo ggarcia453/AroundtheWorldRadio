@@ -75,10 +75,20 @@ function Map(props) {
 
   return (
     <div id="map">
-      <MapContainer center={[33.64202831323988, -117.84444823454378]} zoom={5} scrollWheelZoom={false}>
+      <MapContainer center={[33.64202831323988, -117.84444823454378]} 
+      zoom={5} 
+      scrollWheelZoom={false} 
+      minZoom={3}
+      maxBounds={[
+        [180, 180],
+        [-180,-180]
+    ]}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          continuousWorld={false}
+          noWrap={true}
         />
         <GeoJSON
           key={props.frequency + props.callsign}
