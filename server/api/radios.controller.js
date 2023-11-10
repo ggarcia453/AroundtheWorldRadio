@@ -28,9 +28,16 @@ export default class RadiosCtrl {
         try {
             const type = "Feature";
             const properties = {
+                date: Number(req.body.properties.date),
+                frequency: Number(req.body.properties.frequency),
+                rx_tx: req.body.properties.rx_tx,
+                mode: req.body.properties.mode,
+                db: Number(req.body.properties.db),
+                dt: Number(req.body.properties.dt),
+                audio_freq: Number(req.body.properties.audio_freq),
                 callsign: req.body.properties.callsign,
                 locator: req.body.properties.locator,
-                frequency: Number(req.body.properties.frequency),
+                message: req.body.properties.message
             };
             const geometry = {
                 type: 'Point',

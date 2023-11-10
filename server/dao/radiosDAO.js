@@ -54,18 +54,8 @@ export default class RadiosDAO {
         try {
             const radioDoc = {
                 type: type,
-                properties: {
-                    callsign: properties.callsign,
-                    locator: properties.locator,
-                    frequency: Number(properties.frequency)
-                },
-                geometry: {
-                    coordinates: [
-                        Number(geometry.coordinates[0]),
-                        Number(geometry.coordinates[1])
-                    ],
-                    type: geometry.type
-                }
+                properties: properties,
+                geometry: geometry
             };
             return await radios.insertOne(radioDoc);
         } catch (e) {
