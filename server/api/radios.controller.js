@@ -26,30 +26,34 @@ export default class RadiosCtrl {
 
     static async apiPostRadio(req, res, next) {
         try {
-            const type = "Feature";
-            const properties = {
-                date: Number(req.body.properties.date),
-                frequency: Number(req.body.properties.frequency),
-                rx_tx: req.body.properties.rx_tx,
-                mode: req.body.properties.mode,
-                db: Number(req.body.properties.db),
-                dt: Number(req.body.properties.dt),
-                audio_freq: Number(req.body.properties.audio_freq),
-                callsign: req.body.properties.callsign,
-                locator: req.body.properties.locator,
-                message: req.body.properties.message
-            };
-            const geometry = {
-                type: 'Point',
-                coordinates: [
-                    Number(req.body.geometry.coordinates[0]), 
-                    Number(req.body.geometry.coordinates[1])
-                ]
-            };
+            for (let i = 0; i < req.body.length; i++) {
+                let r = req.body[i];
+                const type = "Feature";
+                const properties = {
+                    date: Number(r.properties.date),
+                    frequency: Number(r.properties.frequency),
+                    rx_tx: r.properties.rx_tx,
+                    mode: r.properties.mode,
+                    db: Number(r.properties.db),
+                    dt: Number(r.properties.dt),
+                    audio_freq: Number(r.properties.audio_freq),
+                    callsign: r.properties.callsign,
+                    locator: r.properties.locator,
+                    message: r.properties.message
+                };
+                const geometry = {
+                    type: 'Point',
+                    coordinates: [
+                        Number(r.geometry.coordinates[0]), 
+                        Number(r.geometry.coordinates[1])
+                    ]
+                };
 
-            const RadioResponse = await RadiosDAO.addRadio(
-                type, properties, geometry
-            )
+                const RadioResponse = await RadiosDAO.addRadio(
+                    type, properties, geometry
+                )
+            }
+            
 
             res.json({ status: "success" })
         } catch(e) {
