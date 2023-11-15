@@ -62,7 +62,15 @@ export default class RadiosDAO {
             console.error(`Unable to post radio: ${e}`);
             return { error: e };
         }
-
-        //TODO: More CRUD
     }
+
+    static async addRadiosBulk(radioDocs) {
+        try {
+            return await radios.bulkWrite(radioDocs);
+        } catch (e) {
+            console.error(`Unable to post radio: ${e}`);
+            return { error: e };
+        }
+    }
+    //TODO: More CRUD
 }
