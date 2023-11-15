@@ -18,7 +18,7 @@ import Calendary from './components/Calendar/Calendar.jsx';
 
 const frequency_list = [
   {value:0, label:"all bands"},
-  {value:60, label:"60m"},
+  {value:14.074, label:"20m (14.074 MHz)"},
   {value:40, label:"40m"}
 ];
 
