@@ -16,6 +16,9 @@ Use `npm i`
 10-20-23
 * react-select
 
+11-14-23
+* primereact
+
 Programmer log:
 1. Be sure to read https://www.react-simple-maps.io/docs/getting-started/ for help setting up the interactive map. 
 2. https://leafletjs.com/reference.html and https://react-leaflet.js.org/docs/api-map/
