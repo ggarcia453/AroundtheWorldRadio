@@ -14,6 +14,7 @@ import { TextField } from "@mui/material";
 import Map from './components/Map/Map.jsx';
 // import { Dropdown, DropdownItem } from 'react-bootstrap';
 import Select from 'react-select'
+import Calendary from './components/Calendar/Calendar.jsx';
 
 const frequency_list = [
   {value:0, label:"all bands"},
@@ -79,7 +80,7 @@ function App() {
               options={frequency_list}
               onChange={(choice) => setFreq(choice.value)}
             />
-            <span>, show signals recieved by </span>
+            <span>, show signals recieved from </span>
 
             <TextField
               value={name}
@@ -89,10 +90,11 @@ function App() {
                 setName(e.target.value);
               }}/>
 
-            <span> using FT8</span>
+            <span> using FT8 on </span>
+            <Calendary/>
         </div>
         <div id='map'>
-          <Map frequency={freq} callsign={name}/>
+          <Map frequency={freq} callsign={name} date = {Calendary.value}/>
         </div>
       </body>
     </div>
