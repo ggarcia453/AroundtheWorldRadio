@@ -2,7 +2,7 @@ import RadiosDAO from "../dao/radiosDAO.js";
 
 export default class RadiosCtrl {
     static async apiGetRadios(req, res, next) {
-        const radiosPerPage = req.query.radiosPerPage ? parseInt(req.query.radiosPerPage, 10) : 20;
+        const radiosPerPage = req.query.radiosPerPage ? parseInt(req.query.radiosPerPage, 10) : 100; // FIXME: this is how to change how much is displayed
         const page = req.query.page ? parseInt(req.query.page, 10) : 0;
 
         let filters = {}

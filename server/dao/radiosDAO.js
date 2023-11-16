@@ -20,7 +20,7 @@ export default class RadiosDAO {
     static async getRadios({
         filters = null,
         page = 0,
-        radiosPerPage = 20,
+        radiosPerPage = 100, // FIXME: only displaying 20
     } = {}) {
         let query;
         if (filters) {

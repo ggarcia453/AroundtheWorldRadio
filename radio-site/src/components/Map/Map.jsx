@@ -88,6 +88,8 @@ function Map(props) {
     return Number(iso.substring(2,4)+iso.substring(5,7)+iso.substring(8,10)+"000000");
   }
 
+  console.log("Displaying " + radioJSON.length + "results.")
+
 
   return (
     <div id="map">
@@ -112,6 +114,7 @@ function Map(props) {
           onEachFeature={onEachFeaturePopup}
           filter={filter}
         />
+        {/* <GeoJSON data={{type: "Feature", geometry: { type: "Point", coordinates: [26, -23]}}}/> */}
       </MapContainer>
     </div>
   );
