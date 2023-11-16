@@ -47,7 +47,8 @@ function Map(props) {
     layer.bindPopup(
       "Callsign: " + feature.properties.callsign + "<br/>" +
       "Locator: " + feature.properties.locator + "<br/>" +
-      "Receiving: " + feature.properties.frequency + "MHz"
+      "Receiving: " + feature.properties.frequency + "MHz<br/>" +
+      "Time: " + feature.properties.date
     );
 
     /* DEPRECIATED: `name` is optional.
@@ -70,8 +71,21 @@ function Map(props) {
   let filter = (feature) => {
     return (
       (props.frequency === 0 ? true : props.frequency === feature.properties.frequency) &&
-      (props.callsign === "" ? true : feature.properties.callsign.startsWith(props.callsign.toUpperCase()))
+      (props.callsign === "" ? true : feature.properties.callsign.startsWith(props.callsign.toUpperCase())) &&
+      (props.date   === null ? true : convertDate(props.date) <= feature.properties.date && feature.properties.date < convertDate(props.date)+1000000) 
       );
+  }
+
+
+  /**
+   * Converts a Date to an int to be used to compare to the datetime from WSJT-X
+   * @param {Date} date 
+   * @returns {Number}
+   */
+  function convertDate(date) {
+    // 2023-11-14T08:00:00.000Z
+    const iso = date.toISOString();
+    return Number(iso.substring(2,4)+iso.substring(5,7)+iso.substring(8,10)+"000000");
   }
 
 
@@ -93,7 +107,7 @@ function Map(props) {
           noWrap={true}
         />
         <GeoJSON
-          key={props.frequency + props.callsign + JSON.stringify(radioJSON)}
+          key={props.frequency + props.callsign + props.date + JSON.stringify(radioJSON)}
           data={radioJSON}
           onEachFeature={onEachFeaturePopup}
           filter={filter}
