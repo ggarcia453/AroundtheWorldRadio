@@ -1,4 +1,4 @@
-import json
+import sys
 import requests
 import re
 from bs4 import BeautifulSoup
@@ -61,18 +61,20 @@ def geo_fix(js:dict):
     return js
 
 
-def send(js:dict):
+def send(js:list):
     #pass
     r = requests.post("http://localhost:5000/api/v1/radios/add", json=js)
     print(f"Status Code: {r.status_code}, Response: {r.json()}")
 
 
 if __name__ == "__main__":
-    file = 'all.txt'
+    file = sys.argv[1]
     l = json_parse(file)
     #example = {'type': 'Feature', 'properties': {'date': 231108014445, 'frequency': 14.074, 'rx_tx': 'Rx', 'mode': 'FT8', 'db': -15, 'dt': 1.4, 'audio_freq': 2853, 'callsign': 'XE2X', 'locator': 'HA2NP', 'message': 'RR73'}, 'geometry': {'type': 'Point', 'coordinates': [-74.633, 40.3473]}}
     #print((geo_fix(example)))
+    g = []
     for example in l:
         if example["properties"]["callsign"] != "CQ":
-            send(geo_fix(example))
+            g.append(geo_fix(example))
+    send(g)
     #print(call_dict)
