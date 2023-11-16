@@ -14,7 +14,10 @@ import { TextField } from "@mui/material";
 import Map from './components/Map/Map.jsx';
 // import { Dropdown, DropdownItem } from 'react-bootstrap';
 import Select from 'react-select'
-import Calendary from './components/Calendar/Calendar.jsx';
+
+import { PrimeReactContext } from 'primereact/api';
+import { Calendar } from 'primereact/calendar';
+import 'primereact/resources/themes/bootstrap4-light-blue/theme.css'
 
 const frequency_list = [
   {value:0, label:"all bands"},
@@ -28,6 +31,9 @@ const geoUrl =
 function App() {
   const [name, setName] = useState("");
   const [freq, setFreq] = useState(0);
+
+  const [date, setDate] = useState(null);
+  let today = new Date();
 
   // function setUserChoice(choice) {
   //   freq = choice;
@@ -91,10 +97,10 @@ function App() {
               }}/>
 
             <span> using FT8 on </span>
-            <Calendary/>
+            <Calendar value={date} onChange={(e) => setDate(e.value)} showButtonBar maxDate={today}/>
         </div>
         <div id='map'>
-          <Map frequency={freq} callsign={name} date = {Calendary.value}/>
+          <Map frequency={freq} callsign={name} date = {date}/>
         </div>
       </body>
     </div>

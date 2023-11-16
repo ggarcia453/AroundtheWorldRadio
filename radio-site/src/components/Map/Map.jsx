@@ -2,8 +2,8 @@ import React from "react";
 import L from 'leaflet';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
-import monitors from "./data/monitors.json"; // sample JSON file
 import RadiosList from "../RadiosList";
+// import monitors from "./data/monitors.json"; // sample JSON file
 
 /**
  * Fixing react-leaflet's marker icon. 
@@ -47,7 +47,7 @@ function Map(props) {
     layer.bindPopup(
       "Callsign: " + feature.properties.callsign + "<br/>" +
       "Locator: " + feature.properties.locator + "<br/>" +
-      "Receiving: " + feature.properties.frequency + "m"
+      "Receiving: " + feature.properties.frequency + "MHz"
     );
 
     /* DEPRECIATED: `name` is optional.

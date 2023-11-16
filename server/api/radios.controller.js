@@ -26,6 +26,7 @@ export default class RadiosCtrl {
 
     static async apiPostRadio(req, res, next) {
         try {
+            let radioDocs = [];
             for (let i = 0; i < req.body.length; i++) {
                 let r = req.body[i];
                 const type = "Feature";
@@ -49,13 +50,16 @@ export default class RadiosCtrl {
                     ]
                 };
 
-                const RadioResponse = await RadiosDAO.addRadio(
-                    type, properties, geometry
-                )
-            }
-            
+                // const RadioResponse = await RadiosDAO.addRadio(
+                //     type, properties, geometry
+                // )
 
-            res.json({ status: "success" })
+                radioDocs[i] = { insertOne: { document: { type: type, properties: properties, geometry: geometry } } };
+
+            }
+            const RadioResponse = await RadiosDAO.addRadiosBulk(radioDocs);
+            
+            res.json({ status: "success", message: RadioResponse })
         } catch(e) {
             res.status(500).json({ error: e.message });
         }

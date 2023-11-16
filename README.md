@@ -2,7 +2,9 @@
 
 This a public repository for the Around the World Radio Senior Design Project. This project has been created Isabel Ruiz, Antoine Nguyen, and Gabriel Garcia, and advised by Professor Peter Burke from UCI's Electrical Engineering and Computer Science department. 
 
-Programmer Dependencies
+We are using the MERN stack. ReactJS for the frontend, NodeJS and ExpressJS for backend, and MongoDB for our database. We are using a REST architecture for our API. To display the map, we are using the react-leaflet library.
+
+Programmer Dependencies <br/>
 Use `npm i`
 
 10-14-23
