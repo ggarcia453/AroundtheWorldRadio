@@ -1,4 +1,5 @@
-let radios
+let radios;
+let callsigns;
 
 /**
  * Data Access Object for Radios database
@@ -10,6 +11,7 @@ export default class RadiosDAO {
         }
         try {
             radios = await conn.collection("radios");
+            callsigns = await conn.collection("callsigns");
         } catch (e) {
             console.error(
                 `Unable to establish a collection handle in radiosDAO: ${e}`
@@ -73,4 +75,54 @@ export default class RadiosDAO {
         }
     }
     //TODO: More CRUD
+
+
+    static async getCallsigns({
+        filters = null,
+        page = 0,
+        callsignsPerPage = 100,
+    } = {}) {
+        let query;
+        if (filters) {
+            if ("callsign" in filters) {
+                query = { $text: { $search: filters["callsign"] } }
+            }
+        }
+
+        let cursor;
+        
+        try {
+            cursor = await callsigns
+                .find(query)
+        } catch (e) {
+            console.error(`Unable to issue find command, ${e}`);
+            return  { callsignsList: [], totalNumCallsigns: 0 };
+        }
+
+        const displayCursor = cursor.limit(callsignsPerPage).skip(callsignsPerPage * page);
+
+        try {
+            const callsignsList = await displayCursor.toArray();
+            const totalNumCallsigns = await callsigns.countDocuments(query);
+
+            return { callsignsList, totalNumCallsigns };
+        } catch (e) {
+            console.error(`Unable to convert cursor to array or problem counting documents. ${e}`);
+            return { callsignsList: [], totalNumCallsigns: 0 };
+        }
+    }
+
+    /**
+     * 
+     * @param {JSONArray} callsignDocs 
+     * @returns 
+     */
+    static async addCallsigns(callsignDocs) {
+        try {
+            return await callsigns.bulkWrite(callsignDocs);
+        } catch (e) {
+            console.error(`Unable to post callsign(s): ${e}`);
+            return { error: e };
+        }
+    }
 }

@@ -7,7 +7,9 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+
 import radios from './api/radios.route.js';
+import callsigns from './api/callsigns.route.js';
 import RadiosDAO from './dao/radiosDAO.js';
 
 dotenv.config();
@@ -31,6 +33,7 @@ connection.once('open', () => {
 });
 
 app.use("/api/v1/radios", radios);
+app.use("/api/v1/callsigns", callsigns);
 app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
 
 await RadiosDAO.injectDB(connection);
