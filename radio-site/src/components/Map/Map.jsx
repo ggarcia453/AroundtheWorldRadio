@@ -32,6 +32,11 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 /**
  * A Map component
+ * 
+ * props (to dynamically filter): 
+ *  * frequency
+ *  * callsign
+ *  * date
  * @param {*} props 
  * @returns {HTML}
  */
@@ -79,6 +84,10 @@ function Map(props) {
 
   /**
    * Converts a Date to an int to be used to compare to the datetime from WSJT-X
+   * 
+   * ISO Date format: `YYYY-MM-DDTHH:MM:SS.SSSZ`  EX: `2023-11-14T08:00:00.000Z`
+   * 
+   * int date format: `YYMMDDHHMMSS`              EX: `231114000000`
    * @param {Date} date 
    * @returns {Number}
    */
@@ -88,7 +97,7 @@ function Map(props) {
     return Number(iso.substring(2,4)+iso.substring(5,7)+iso.substring(8,10)+"000000");
   }
 
-  console.log("Displaying " + radioJSON.length + "results.")
+  // console.log("Displaying " + radioJSON.features.length + " results.")
 
 
   return (
@@ -114,7 +123,6 @@ function Map(props) {
           onEachFeature={onEachFeaturePopup}
           filter={filter}
         />
-        {/* <GeoJSON data={{type: "Feature", geometry: { type: "Point", coordinates: [26, -23]}}}/> */}
       </MapContainer>
     </div>
   );
