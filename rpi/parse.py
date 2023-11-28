@@ -62,7 +62,7 @@ def geo_fix(js:dict):
 
 
 def send(js:list):
-    #pass
+    #FIXME: Fix api link based on new databse configuration
     r = requests.post("http://localhost:5000/api/v1/radios/add", json=js)
     print(f"Status Code: {r.status_code}, Response: {r.json()}")
 
