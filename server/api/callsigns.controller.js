@@ -9,7 +9,6 @@ export default class CallsignsCtrl {
         if (req.query.callsign) {
             filters.callsign = req.query.callsign;
         }
-        //TODO: filters
 
         const { callsignsList, totalNumCallsigns } = await RadiosDAO.getCallsigns({
             filters,
@@ -44,6 +43,47 @@ export default class CallsignsCtrl {
             
             res.json({ status: "success", message: CallsignResponse })
         } catch(e) {
+            res.status(500).json({ error: e.message });
+        }
+    }
+
+    //TODO: Test
+    static async apiUpdateCallsign(req, res, next) {
+        try {
+            const callsign = req.body.callsign;
+            const coordinates = req.body.coordinates;
+
+            const callsignResponse = await RadiosDAO.updateCallsign(
+                callsign,
+                coordinates
+            )
+
+            var { error } = callsignResponse;
+            if (error) {
+                res.status(400).json({ error });
+            }
+
+            if (callsignResponse.modifiedCount === 0) {
+                throw new Error(
+                    "unable to update callsign"
+                )
+            }
+
+            res.json({ status: "success" });
+        } catch (e) {
+            res.status(500).json({ error: e.message });
+        }
+    }
+
+    static async apiDeleteCallsign(req, res, next) {
+        try {
+            const callsign = req.query.callsign
+            console.log(callsign);
+            const callsignResponse = await RadiosDAO.deleteCallsign(
+                callsign
+            )
+            res.json({ status: "success" });
+        } catch (e) {
             res.status(500).json({ error: e.message });
         }
     }

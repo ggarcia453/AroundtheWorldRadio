@@ -125,4 +125,31 @@ export default class RadiosDAO {
             return { error: e };
         }
     }
+
+    static async updateCallsign(callsign, coordinates) {
+        try {
+            const updateResponse = await callsigns.updateOne(
+                { callsign: callsign },
+                { $set: { coordinates: coordinates } }
+            );
+            
+            return updateResponse;
+        } catch (e) {
+            console.error(`Unable to update callsign: ${e}`);
+            return { error: e }
+        }
+    }
+
+    static async deleteCallsign(callsign) {
+        try {
+            const deleteResponse = await callsigns.deleteOne({
+                callsign: callsign
+            });
+
+            return deleteResponse;
+        } catch (e) {
+            console.error(`Unable to delete callsign: ${e}`);
+            return { error: e };
+        }
+    }
 }
