@@ -6,7 +6,10 @@ const router = express.Router();
 
 router.route('/').get(CallsignsCtrl.apiGetCallsigns);
 
-router.route("/add").post(CallsignsCtrl.apiPostCallsigns);
+router.route("/update")
+    .post(CallsignsCtrl.apiPostCallsigns)
+    .put(CallsignsCtrl.apiUpdateCallsign)
+    .delete(CallsignsCtrl.apiDeleteCallsign);
 //TODO: More CRUD @ video 45:34
 //  https://www.youtube.com/watch?v=mrHNSanmqQ4
 
