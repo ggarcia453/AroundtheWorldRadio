@@ -1,12 +1,13 @@
-import subprocess
-import time, datetime
+import subprocess, os
+import datetime
 import sys
 
 def main():
     while True:
-        print(datetime.datetime.now())
-        subprocess.call('parse.sh')
-        time.sleep(5)
+        print(datetime.datetime.today())
+        subprocess.call("parse.sh", shell=True)
+        break
+        #time.sleep(5)
 
 if __name__ == "__main__":
     arguments = sys.argv[1:]
