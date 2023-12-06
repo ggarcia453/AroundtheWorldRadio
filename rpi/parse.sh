@@ -1,3 +1,4 @@
 #!/bin/bash
-python3 parse.py all.txt
-rm all.txt
+echo "HI"
+python3 parse.py ~/.local/share/WSJT-X/ALL.TXT
+rm ~/.local/share/WSJT-X/ALL.TXT

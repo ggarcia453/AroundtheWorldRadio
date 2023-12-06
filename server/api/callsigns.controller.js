@@ -47,7 +47,6 @@ export default class CallsignsCtrl {
         }
     }
 
-    //TODO: Test
     static async apiUpdateCallsign(req, res, next) {
         try {
             const callsign = req.body.callsign;
