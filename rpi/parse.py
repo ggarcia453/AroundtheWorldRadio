@@ -71,7 +71,7 @@ def geo_fix(js:dict):
             js['geometry']['coordinates'] = x
             call_dict[callsign] = x
             addSite = r"http://localhost:5000/api/v1/callsigns/update"
-            result = requests.post(addSite, json={"callsign":callsign, "coordinates": x})
+            result = requests.post(addSite, json=[{"callsign":callsign, "coordinates": x}])
     return js
 
 
