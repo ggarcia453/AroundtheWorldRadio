@@ -1,7 +1,7 @@
 {
   "name": "radio-site",
   "version": "0.1.0",
-  "homepage": "https://github.com/ggarcia453/AroundtheWorldRadio",
+  "homepage": "https://ggarcia453.github.io/AroundtheWorldRadio/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
