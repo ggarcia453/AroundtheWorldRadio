@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ggarcia453/AroundtheWorldRadio/static/css/main.6a22b426.css",
+    "main.js": "/ggarcia453/AroundtheWorldRadio/static/js/main.c3cb243e.js",
+    "static/js/787.8b17072b.chunk.js": "/ggarcia453/AroundtheWorldRadio/static/js/787.8b17072b.chunk.js",
+    "index.html": "/ggarcia453/AroundtheWorldRadio/index.html",
+    "main.6a22b426.css.map": "/ggarcia453/AroundtheWorldRadio/static/css/main.6a22b426.css.map",
+    "main.c3cb243e.js.map": "/ggarcia453/AroundtheWorldRadio/static/js/main.c3cb243e.js.map",
+    "787.8b17072b.chunk.js.map": "/ggarcia453/AroundtheWorldRadio/static/js/787.8b17072b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6a22b426.css",
+    "static/js/main.c3cb243e.js"
+  ]
+}
