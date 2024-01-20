@@ -5,7 +5,7 @@ import http from "../http-common";
  */
 class RadioDataService {
     getAll(page = 0) {
-        return http.get(`?page=${page}`);
+        return http.get(`radios?page=${page}`);
     }
 
     // TODO: CRUD @1:26:58
