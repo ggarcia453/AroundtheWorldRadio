@@ -29,32 +29,31 @@ export default class RadiosCtrl {
             let radioDocs = [];
             for (let i = 0; i < req.body.length; i++) {
                 let r = req.body[i];
-                const type = "Feature";
-                const properties = {
-                    date: Number(r.properties.date),
-                    frequency: Number(r.properties.frequency),
-                    rx_tx: r.properties.rx_tx,
-                    mode: r.properties.mode,
-                    db: Number(r.properties.db),
-                    dt: Number(r.properties.dt),
-                    audio_freq: Number(r.properties.audio_freq),
-                    callsign: r.properties.callsign,
-                    locator: r.properties.locator,
-                    message: r.properties.message
-                };
-                const geometry = {
-                    type: 'Point',
-                    coordinates: [
-                        Number(r.geometry.coordinates[0]), 
-                        Number(r.geometry.coordinates[1])
-                    ]
+                const document = {
+                    date: Number(r.date),
+                    frequency: Number(r.frequency),
+                    rx_tx: r.rx_tx,
+                    mode: r.mode,
+                    db: Number(r.db),
+                    dt: Number(r.dt),
+                    audio_freq: Number(r.audio_freq),
+                    direction: Number(r.direction),
+                    callsign: r.callsign,
+                    message: r.message,
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            Number(r.geometry.coordinates[0]), 
+                            Number(r.geometry.coordinates[1])
+                        ]
+                    }
                 };
 
                 // const RadioResponse = await RadiosDAO.addRadio(
                 //     type, properties, geometry
                 // )
 
-                radioDocs[i] = { insertOne: { document: { type: type, properties: properties, geometry: geometry } } };
+                radioDocs[i] = { insertOne: { document: document } };
 
             }
             const RadioResponse = await RadiosDAO.addRadiosBulk(radioDocs);
