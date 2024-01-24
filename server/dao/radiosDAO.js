@@ -52,6 +52,9 @@ export default class RadiosDAO {
         }
     }
 
+    /**
+     * @deprecated Use addRadiosBulk instead
+     */
     static async addRadio(type, properties, geometry) {
         try {
             const radioDoc = {
