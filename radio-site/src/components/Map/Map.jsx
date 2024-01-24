@@ -71,7 +71,6 @@ function Map(props) {
   function onEachFeaturePopup(feature, layer) {
     layer.bindPopup(
       "Callsign: " + feature.properties.callsign + "<br/>" +
-      "Locator: " + feature.properties.locator + "<br/>" +
       "Receiving: " + feature.properties.frequency + "MHz<br/>" +
       "Time: " + feature.properties.date
     );
