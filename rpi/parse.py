@@ -16,22 +16,15 @@ def json_parse(file:str):
         for line in lines:
             if line != "\n":
                 arr = line.split()
-                j_dict = {'date': int(arr[0]), 'frequency': float(arr[1]), 'rx_tx': arr[2], 'mode': arr[3],
-                          'db': int(arr[4]), 'dt': float(arr[5]), 'audio_freq': int(arr[6]), 'callsign': arr[7],
-                          "locator": arr[8], "message": arr[9]}
-                js = {
-                    "type": "Feature",
-                    "properties": j_dict,
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [-74.633, 40.3473]
-                    }
-                }
-                g.append(js)
-    # final = json.dumps(g, indent=1)
-
+                callsign = arr[7]
+                if callsign != "CQ":    
+                    geo_js = {'type' : 'point', 'geometry' : geo_fix(callsign=callsign)}
+                    js = {'date' : int(arr[0][1:]), 'frequency': float(arr[1]), 'rx_tx': arr[2], 'mode' : arr[3], 'db' : int(arr[4]),
+                        'dt' : float(arr[5]), 'audio_freq': int(arr[6]), 'direction' : 'N/A', 'callsign': callsign, 'message' : arr[8:],
+                        'geometry' : geo_js}
+                    g.append(js)
+    return g
     # display
-    return(g)
     # r = requests.post("http://localhost:5000/api/v1/radios/add", json=g)
     # print(f"Status Code: {r.status_code}, Response: {r.json()}")
     
@@ -46,16 +39,16 @@ def find_call(callsign:str):
         return di["callsigns"][0]['coordinates']
 
 
-def geo_fix(js:dict):
+def geo_fix(callsign:str):
     global call_dict
-    callsign = js['properties']['callsign']
     p = find_call(callsign=callsign)
     if p != []:
-        js['geometry']['coordinates'] = p
+        return p
     else:
         website = f"https://www.levinecentral.com/ham/grid_square.php?Call={callsign}"
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+        print(f"COnnecting to {website}")
         time.sleep(30)
         result = requests.get(website, headers=headers)
         # print(result.content.decode())
@@ -63,16 +56,15 @@ def geo_fix(js:dict):
         data = soup.getText()
         # print(data)
         coord = re.search(r"Latitude: (-?\d+.\d+) [\s|\S]+ Longitude: (-?\d+.\d+)", data)
-        print(coord)
+        #print(coord)
         if coord is None:
-            pass
+            return []
         else:
             x = [float(coord[2]), float(coord[1])]
-            js['geometry']['coordinates'] = x
             call_dict[callsign] = x
             addSite = r"http://localhost:5000/api/v1/callsigns/update"
             result = requests.post(addSite, json=[{"callsign":callsign, "coordinates": x}])
-    return js
+            return  x
 
 
 def send_radios(js:list):
@@ -86,14 +78,9 @@ def send_callsigns(js:list):
 
 
 if __name__ == "__main__":
-    file = sys.argv[1]
+    file, degrees = sys.argv[1:]
     l = json_parse(file)
+    #print(json.dumps(l))
     #example = {'type': 'Feature', 'properties': {'date': 231108014445, 'frequency': 14.074, 'rx_tx': 'Rx', 'mode': 'FT8', 'db': -15, 'dt': 1.4, 'audio_freq': 2853, 'callsign': 'XE2X', 'locator': 'HA2NP', 'message': 'RR73'}, 'geometry': {'type': 'Point', 'coordinates': [-74.633, 40.3473]}}
-    #print((geo_fix(example)))
-    g = []
-    for example in l:
-        if example["properties"]["callsign"] != "CQ":
-            g.append(geo_fix(example))
-    print(g)
-    #send_radios(g)
-    #print(call_dict)
+    
+    send_radios(l)
