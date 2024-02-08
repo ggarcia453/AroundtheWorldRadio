@@ -54,7 +54,10 @@ callsign:   { type: String, required: true },   // Unique tag of a radio
 message:    { type: String }                    // Extra (not used)
 geometry: {
     type:   { type: String, default: 'Point' },
-    coordinates: [ { type: Number }, { type: Number } ]
+    coordinates: [ 
+      { type: Number },                         // Longitude
+      { type: Number }                          // Latitude
+    ]
 }
 ```
 
@@ -255,3 +258,9 @@ fi
 python3 parse.py $ALL $1
 rm $ALL
 ```
+
+## Common Errors
+
+### 1. Error: connect ECONNREFUSED
+**CAUSE:** The server machine cannot establish a connection to the MongoDB database due to the network denying access.
+**SOLUTION:** Make sure to add your IP address to the **Network Access** section of MongoDB Atlas.
