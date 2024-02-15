@@ -13,6 +13,7 @@ import AboutUs from './pages/AboutUs';
 import Home from './pages/Home';
 import Stats from './pages/Statistics.jsx';
 import Archive from './pages/Archive.jsx';
+import Manual from './pages/Manual.jsx';
 // import { Dropdown, DropdownItem } from 'react-bootstrap';
 import Select from 'react-select'
 
@@ -51,6 +52,7 @@ function App() {
                 <Route path="/AroundtheWorldRadio/about" element={<AboutUs />} />
                 <Route path='/AroundtheWorldRadio/stats' element={<Stats/>}/>
                 <Route path='/AroundtheWorldRadio/archive' element={<Archive/>}/>
+                <Route path='/AroundtheWorldRadio/manual' element={<Manual/>}/>
                 </Routes>
                 </Router>
     

@@ -26,6 +26,9 @@ function Navbar(){
                     <NavLink to="/AroundtheWorldRadio/archive">
                         Archive
                     </NavLink>
+                    <NavLink to="/AroundtheWorldRadio/manual">
+                        Manual
+                    </NavLink>
                 </NavMenu>
                 </Nav>
         </>
