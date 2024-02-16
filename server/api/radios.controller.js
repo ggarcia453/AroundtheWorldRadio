@@ -11,7 +11,7 @@ export default class RadiosCtrl {
         if (req.query.callsign) {
             filters.callsign = req.query.callsign
         } else if (req.query.date) {
-            filters.date = req.query.date
+            filters.date = Number(req.query.date)
         }
 
         const { radiosList, totalNumRadios } = await RadiosDAO.getRadios({

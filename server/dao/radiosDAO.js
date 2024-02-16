@@ -29,7 +29,8 @@ export default class RadiosDAO {
             if ("callsign" in filters) {
                 query = { $text: { $search: filters["callsign"] } }
             } else if ("date" in filters) {
-                query = { "date": { $eq: filters["date"] } }
+                // filters["date"]: YYMMDD
+                query = { "date": { $gte: filters["date"]*1000000, $lt: (filters["date"]+1)*1000000 } }
             }
         }
 
@@ -38,7 +39,7 @@ export default class RadiosDAO {
         try {
             cursor = await radios
                 .find(query)
-                .sort({date: 1})
+                .sort({date: -1})
         } catch (e) {
             console.error(`Unable to issue find command, ${e}`);
             return  { radiosList: [], totalNumRadios: 0 };

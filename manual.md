@@ -72,7 +72,7 @@ This starts the server on `http://localhost:5000/`. At this point we can add dat
 * Website: http://localhost:3000/
 * Radios Read [GET]: http://localhost:5000/api/v1/radios
 * Radios Read Callsign [GET]: http://localhost:5000/api/v1/radios?callsign=K1JT
-* Radios Read Date [GET]: http://localhost:5000/api/v1/radios?date=231109001145
+* Radios Read Date [GET]: http://localhost:5000/api/v1/radios?date=231109
 * Radios Create [POST] (JSON array of JSON objects): http://localhost:5000/api/v1/radios/add
 * Radios Delete [DELETE] (JSON array of JSON objects): http://localhost:5000/api/v1/radios/delete
 * Callsigns Read [GET]: http://localhost:5000/api/v1/callsigns
