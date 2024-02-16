@@ -7,6 +7,7 @@ const router = express.Router();
 router.route('/').get(RadiosCtrl.apiGetRadios)
 
 router.route("/add").post(RadiosCtrl.apiPostRadio);
+router.route("/delete").delete(RadiosCtrl.apiDeleteRadios);
 //TODO: More CRUD @ video 45:34
 //  https://www.youtube.com/watch?v=mrHNSanmqQ4
 

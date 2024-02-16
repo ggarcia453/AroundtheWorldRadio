@@ -25,8 +25,12 @@ export default class RadiosDAO {
         radiosPerPage = 100, // FIXME: only displaying 20
     } = {}) {
         let query;
-        if (filters) {
-            //TODO: can filter radios here too
+        if (filters) { 
+            if ("callsign" in filters) {
+                query = { $text: { $search: filters["callsign"] } }
+            } else if ("date" in filters) {
+                query = { "date": { $eq: filters["date"] } }
+            }
         }
 
         let cursor;
@@ -34,6 +38,7 @@ export default class RadiosDAO {
         try {
             cursor = await radios
                 .find(query)
+                .sort({date: 1})
         } catch (e) {
             console.error(`Unable to issue find command, ${e}`);
             return  { radiosList: [], totalNumRadios: 0 };
@@ -74,6 +79,15 @@ export default class RadiosDAO {
             return await radios.bulkWrite(radioDocs);
         } catch (e) {
             console.error(`Unable to post radio: ${e}`);
+            return { error: e };
+        }
+    }
+
+    static async deleteRadiosBulk(radioDocs) {
+        try {
+            return await radios.bulkWrite(radioDocs);
+        } catch (e) {
+            console.error(`Unable to delete radio: ${e}`);
             return { error: e };
         }
     }

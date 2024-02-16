@@ -1,4 +1,6 @@
 import RadiosDAO from "../dao/radiosDAO.js";
+import mongodb from "mongodb";
+const ObjectId = mongodb.ObjectId;
 
 export default class RadiosCtrl {
     static async apiGetRadios(req, res, next) {
@@ -6,7 +8,11 @@ export default class RadiosCtrl {
         const page = req.query.page ? parseInt(req.query.page, 10) : 0;
 
         let filters = {}
-        //TODO: filters
+        if (req.query.callsign) {
+            filters.callsign = req.query.callsign
+        } else if (req.query.date) {
+            filters.date = req.query.date
+        }
 
         const { radiosList, totalNumRadios } = await RadiosDAO.getRadios({
             filters,
@@ -60,6 +66,23 @@ export default class RadiosCtrl {
             
             res.json({ status: "success", message: RadioResponse })
         } catch(e) {
+            res.status(500).json({ error: e.message });
+        }
+    }
+
+    static async apiDeleteRadios(req, res, next) {
+        try {
+            let radioDocs = [];
+            for (let i = 0; i < req.body.length; i++) {
+                let r = req.body[i]
+                const radioId = r._id;
+                radioDocs[i] = { deleteOne: { filter: { _id: new ObjectId(radioId) } } };
+            }
+
+            const radioResponse = await RadiosDAO.deleteRadiosBulk(radioDocs)
+
+            res.json({ status: "success" });
+        } catch (e) {
             res.status(500).json({ error: e.message });
         }
     }

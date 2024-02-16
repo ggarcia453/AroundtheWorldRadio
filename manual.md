@@ -68,6 +68,18 @@ nodemon server
 ```
 This starts the server on `http://localhost:5000/`. At this point we can add data using the endpoint `http://localhost:5000/radios/add`, following the schema above. We can read data from the endpoint `http://localhost:5000/radios`. 
 
+#### Endpoints
+* Website: http://localhost:3000/
+* Radios Read [GET]: http://localhost:5000/api/v1/radios
+* Radios Read Callsign [GET]: http://localhost:5000/api/v1/radios?callsign=K1JT
+* Radios Read Date [GET]: http://localhost:5000/api/v1/radios?date=231109001145
+* Radios Create [POST] (JSON array of JSON objects): http://localhost:5000/api/v1/radios/add
+* Radios Delete [DELETE] (JSON array of JSON objects): http://localhost:5000/api/v1/radios/delete
+* Callsigns Read [GET]: http://localhost:5000/api/v1/callsigns
+* Callsigns Read (Specific) [GET]: http://localhost:5000/api/v1/callsigns?callsign=K1JT
+* Callsign Create [POST] and Update [PUT] (JSON array of JSON objects): http://localhost:5000/api/v1/callsigns/update
+* Callsign Delete (Specific) [DELETE] (query): http://localhost:5000/api/v1/callsigns/update?callsign=TEST
+
 ### 3. Setting up serverless endpoints
 We continued using the YouTube tutorial to set up a serverless GET endpoint using MongoDB Realms. The following code is our function for the GET endpoint. We did have to modify the return line to ensure that the response returns a JSON format, rather than a EJSON format.
 ```javascript
