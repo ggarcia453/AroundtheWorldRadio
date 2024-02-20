@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/AroundtheWorldRadio/static/css/main.5ff0984e.css",
-    "main.js": "/AroundtheWorldRadio/static/js/main.df475c97.js",
+    "main.js": "/AroundtheWorldRadio/static/js/main.2a33a813.js",
     "static/js/787.8b17072b.chunk.js": "/AroundtheWorldRadio/static/js/787.8b17072b.chunk.js",
+    "static/media/manual.md": "/AroundtheWorldRadio/static/media/manual.fc03a291a9d3077b4886.md",
     "index.html": "/AroundtheWorldRadio/index.html",
     "main.5ff0984e.css.map": "/AroundtheWorldRadio/static/css/main.5ff0984e.css.map",
-    "main.df475c97.js.map": "/AroundtheWorldRadio/static/js/main.df475c97.js.map",
+    "main.2a33a813.js.map": "/AroundtheWorldRadio/static/js/main.2a33a813.js.map",
     "787.8b17072b.chunk.js.map": "/AroundtheWorldRadio/static/js/787.8b17072b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5ff0984e.css",
-    "static/js/main.df475c97.js"
+    "static/js/main.2a33a813.js"
   ]
 }
