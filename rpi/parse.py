@@ -17,7 +17,7 @@ def json_parse(file:str,degrees:str):
             if line != "\n":
                 arr = line.split()
                 callsign = arr[7]
-                if callsign != "CQ":    
+                if callsign.startswith("CQ"):    
                     geo_js = {'type' : 'point', 'coordinates' : geo_fix(callsign=callsign)}
                     js = {'date' : int(arr[0][1:]), 'frequency': float(arr[1]), 'rx_tx': arr[2], 'mode' : arr[3], 'db' : int(arr[4]),
                         'dt' : float(arr[5]), 'audio_freq': int(arr[6]), 'direction' : degrees, 'callsign': callsign, 'message' : arr[8:],
