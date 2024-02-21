@@ -117,3 +117,7 @@ font-size: 17px;
   background-color: #282c34;
   caret-color: #04AA6D;
 }
+
+a {
+  color: green;
+}
