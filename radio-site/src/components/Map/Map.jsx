@@ -41,7 +41,27 @@ L.Marker.prototype.options.icon = DefaultIcon;
  * @returns {HTML}
  */
 function Map(props) {
-  const radioJSON = { type: "FeatureCollection", features: RadiosList() };
+  let radiosList = [];
+  // create GeoJSON for each radio signal document
+  for (const radio of RadiosList()) {
+    radiosList.push({
+      type: "Feature",
+      properties: {
+        date: radio.date,
+        frequency: radio.frequency,
+        rx_tx: radio.rx_tx,
+        mode: radio.mode,
+        db: radio.db,
+        dt: radio.dt,
+        audio_freq: radio.audio_freq,
+        direction: radio.direction,
+        callsign: radio.callsign,
+        message: radio.message,
+      },
+      geometry: radio.geometry
+    })
+  }
+  const radioJSON = { type: "FeatureCollection", features: radiosList };
 
   /**
    * On each marker, display a popup with the callsign, locator, and frequency band
@@ -51,21 +71,9 @@ function Map(props) {
   function onEachFeaturePopup(feature, layer) {
     layer.bindPopup(
       "Callsign: " + feature.properties.callsign + "<br/>" +
-      "Locator: " + feature.properties.locator + "<br/>" +
       "Receiving: " + feature.properties.frequency + "MHz<br/>" +
       "Time: " + feature.properties.date
     );
-
-    /* DEPRECIATED: `name` is optional.
-    if (feature.properties.name) {
-      layer.bindPopup(
-        "Callsign: " + feature.properties.callsign + "<br/>" +
-        "Locator: " + feature.properties.locator + "<br/>" +
-        "Receiving: " + feature.properties.frequency + "m<br/>" +
-        "<b>Name: " + feature.properties.name + "</b>"
-      );
-    }
-    */
   }
 
   /**

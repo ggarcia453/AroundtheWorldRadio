@@ -3,15 +3,17 @@ import './App.css';
 import React, { useState } from "react";
 import "./App.css";
 import { TextField } from "@mui/material";
-// import Navbar from "./components/NavBar/navbarElements";
-// import {
-//     BrowserRouter as Router,
-//     Routes,
-//     Route,
-// } from "react-router-dom";
-// import AboutUs from './pages/AboutUs';
-// import Home from './pages/Home';
-import Map from './components/Map/Map.jsx';
+import Navbar from "./components/NavBar/index.js";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+} from "react-router-dom";
+import AboutUs from './pages/AboutUs';
+import Home from './pages/Home';
+import Stats from './pages/Statistics.jsx';
+import Archive from './pages/Archive.jsx';
+import Manual from './pages/Manual.jsx';
 // import { Dropdown, DropdownItem } from 'react-bootstrap';
 import Select from 'react-select'
 
@@ -42,17 +44,21 @@ function App() {
   // }
 
   return (
-    <>
-    {/*<Router>
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<AboutUs />} />
-                </Routes>
-                </Router>*/ }
-                
+    <>            
     <div className="App">
-      <header className="App-header">
+    <Router className="App-header">
+            <Navbar/>
+            
+            <Routes>
+                <Route path="/AroundtheWorldRadio/" element={<Home />} />
+                <Route path="/AroundtheWorldRadio/about" element={<AboutUs />} />
+                <Route path='/AroundtheWorldRadio/stats' element={<Stats/>}/>
+                <Route path='/AroundtheWorldRadio/archive' element={<Archive/>}/>
+                <Route path='/AroundtheWorldRadio/manual' element={<Manual/>}/>
+                </Routes>
+                </Router>
+    
+      {/*<header className="App-header">
         <p>
           Welcome to the Around the World Radio Project website.
         </p>
@@ -77,8 +83,8 @@ function App() {
       <p>
         Below is our current map.
       </p>
-      </header>
-      <body>
+              </header>*/}
+      {/* <body>
         <div className='menu-container'>
           <span>On </span>
             <Select
@@ -103,7 +109,7 @@ function App() {
         <div id='map'>
           <Map frequency={freq} callsign={name} date = {date}/>
         </div>
-      </body>
+            </body> */}
     </div>
     
     
