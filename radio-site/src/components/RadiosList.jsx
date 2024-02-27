@@ -14,14 +14,24 @@ const RadiosList = props => {
     }, []);
 
     const retrieveRadios = () => {
-        RadioDataService.getAll()
-            .then(response => {
-                // console.log(response.data);
-                setRadios(response.data.radios);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        if (props && props.date) {
+            RadioDataService.getDate(Number(props.date))
+                .then(response => {
+                    setRadios(response.data.radios);
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        } else {
+            RadioDataService.getAll()
+                .then(response => {
+                    // console.log(response.data);
+                    setRadios(response.data.radios);
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        }
     }
 
     const refreshList = () => {

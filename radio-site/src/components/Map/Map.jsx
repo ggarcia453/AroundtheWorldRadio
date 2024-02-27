@@ -43,7 +43,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
 function Map(props) {
   let radiosList = [];
   // create GeoJSON for each radio signal document
-  for (const radio of RadiosList()) {
+  for (const radio of RadiosList(props.date)) {
     radiosList.push({
       type: "Feature",
       properties: {

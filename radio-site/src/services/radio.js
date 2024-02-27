@@ -8,7 +8,9 @@ class RadioDataService {
         return http.get(`radios?page=${page}`);
     }
 
-    // TODO: CRUD @1:26:58
+    getDate(page = 0, date) {
+        return http.get(`radios?page=${page}&date=${date}`);
+    }
 }
 
 export default new RadioDataService();
