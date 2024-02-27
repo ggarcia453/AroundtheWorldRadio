@@ -1,4 +1,6 @@
 import React from "react";
+import './Statistics.css'
+
  
 const Stats = () => {
     return (
@@ -6,7 +8,8 @@ const Stats = () => {
             style={{
                 justifyContent: "centre",
                 alignItems: "centre",
-                height: "100vh",
+                height: "100%",
+                fontSize: "20px"
             }}
         >
             <h1>
