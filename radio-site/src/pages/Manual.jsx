@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown'
 import termsFrPath from './manual.md'
-
+import './Manual.css'
 
 class Terms extends Component {
     constructor(props) {
