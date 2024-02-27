@@ -14,8 +14,8 @@ const RadiosList = props => {
     }, []);
 
     const retrieveRadios = () => {
-        if (props && props.date) {
-            RadioDataService.getDate(Number(props.date))
+        if (props) {
+            RadioDataService.getDate(0, Number(props))
                 .then(response => {
                     setRadios(response.data.radios);
                 })
