@@ -29,9 +29,13 @@ function getDateQuery() {
  * @returns {Number}
  */
 function convertDateToString(date) {
-  // 2023-11-14T08:00:00.000Z
-  const iso = date.toISOString();
-  return Number(iso.substring(2, 4) + iso.substring(5, 7) + iso.substring(8, 10) + "000000");
+  if (date) {
+    // 2023-11-14T08:00:00.000Z
+    const iso = date.toISOString();
+    return Number(iso.substring(2, 4) + iso.substring(5, 7) + iso.substring(8, 10) + "000000");
+  } else {
+    return null
+  }
 }
 
 function convertStringToDate(string) {
@@ -82,10 +86,15 @@ function Home() {
             }} />
 
           <span> using FT8 on </span>
-          <Calendar value={convertStringToDate(getDateQuery())} onChange={(e) => window.location.replace(`?date=${convertDateToString(e.value)/1000000}`)} showButtonBar maxDate={today} />
+          <Calendar value={convertStringToDate(getDateQuery())} onChange={(e) => {
+            if (e.value) { 
+              window.location.replace(`?date=${convertDateToString(e.value)/1000000}`) 
+            } else {
+              window.location.replace("?")
+            }}} showButtonBar maxDate={today} />
         </div>
         <div id='map'>
-        <Map frequency={freq} callsign={name} date={convertStringToDate(getDateQuery())} />
+        <Map frequency={freq} callsign={name} date={getDateQuery()} />
         </div>
       </Row>
 
