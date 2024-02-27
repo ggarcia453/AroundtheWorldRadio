@@ -4,14 +4,22 @@ const ObjectId = mongodb.ObjectId;
 
 export default class RadiosCtrl {
     static async apiGetRadios(req, res, next) {
-        const radiosPerPage = req.query.radiosPerPage ? parseInt(req.query.radiosPerPage, 10) : 100; // FIXME: this is how to change how much is displayed
+        // radiosPerPage value determines how many signals are displayed by default on the map.
+        const radiosPerPage = req.query.radiosPerPage ? parseInt(req.query.radiosPerPage, 10) : 750;
         const page = req.query.page ? parseInt(req.query.page, 10) : 0;
 
         let filters = {}
         if (req.query.callsign) {
             filters.callsign = req.query.callsign
-        } else if (req.query.date) {
+        } 
+        if (req.query.date) {
             filters.date = Number(req.query.date)
+        } 
+        if (req.query.noCoordinates) {
+            filters.noCoordinates = req.query.noCoordinates
+        }
+        if (req.query.distinct) {
+            filters.distinct = req.query.distinct
         }
 
         const { radiosList, totalNumRadios } = await RadiosDAO.getRadios({

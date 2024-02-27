@@ -22,7 +22,7 @@ export default class RadiosDAO {
     static async getRadios({
         filters = null,
         page = 0,
-        radiosPerPage = 100, // FIXME: only displaying 20
+        radiosPerPage = 750,
     } = {}) {
         let query;
         if (filters) { 
@@ -31,24 +31,66 @@ export default class RadiosDAO {
             } else if ("date" in filters) {
                 // filters["date"]: YYMMDD
                 query = { "date": { $gte: filters["date"]*1000000, $lt: (filters["date"]+1)*1000000 } }
+            } else if ("noCoordinates" in filters) {
+                query = { "geometry": { "type": "Point", coordinates: [NaN, NaN] } }
             }
         }
 
         let cursor;
         
         try {
-            cursor = await radios
-                .find(query)
-                .sort({date: -1})
+            if ("distinct" in filters && filters["distinct"] === "false") {
+                cursor = await radios
+                    .find(query)
+                    .sort({date: -1})
+                    .limit(radiosPerPage)
+                    .skip(radiosPerPage * page);
+            } else {
+                cursor = await radios.aggregate([
+                    { $match: q }, 
+                    { $sort: {"date": -1} }, {
+                    $group: {
+                        originalId: {$first: '$_id'}, 
+                        _id: '$callsign', 
+                        date: {$first: '$date'},
+                        frequency: {$first: '$frequency'},
+                        rx_tx: {$first: '$rx_tx'},
+                        mode: {$first: '$mode'},
+                        db: {$first: '$db'},
+                        dt: {$first: '$dt'},
+                        audio_freq: {$first: '$audio_freq'},
+                        direction: {$first: '$direction'},
+                        message: {$first: '$message'},
+                        geometry: {$first: '$geometry'}
+                    }
+                    }, { $sort: {"date": -1} }, {
+                    $project: {
+                        _id : '$originalId',
+                        callsign  : '$_id',
+                        date: '$date',
+                        frequency: '$frequency',
+                        rx_tx: '$rx_tx',
+                        mode: '$mode',
+                        db: '$db',
+                        dt: '$dt',
+                        audio_freq: '$audio_freq',
+                        direction: '$direction',
+                        message: '$message',
+                        geometry: '$geometry'
+                    }
+                    }, { $skip: Number(page)*Number(radiosPerPage) },
+                    { $limit: Number(radiosPerPage) }
+                ])
+            }
         } catch (e) {
             console.error(`Unable to issue find command, ${e}`);
             return  { radiosList: [], totalNumRadios: 0 };
         }
 
-        const displayCursor = cursor.limit(radiosPerPage).skip(radiosPerPage * page);
+        // const displayCursor = cursor.limit(radiosPerPage).skip(radiosPerPage * page);
 
         try {
-            const radiosList = await displayCursor.toArray();
+            const radiosList = await cursor.toArray();
             const totalNumRadios = await radios.countDocuments(query);
 
             return { radiosList, totalNumRadios };
