@@ -8,18 +8,52 @@ import { Container, Row } from "react-bootstrap";
 
 const frequency_list = [
   { value: 0, label: "all bands" },
-  { value: 60, label: "60m" },
-  { value: 40, label: "40m" }
+  { value: 14.074, label: "20m" },
 ];
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
 
+function getDateQuery() {
+  var query = window.location.search.substring(1).split("=");
+  if (query[0] == "date") { return query[1] }
+}
+
+/**
+ * Converts a Date to an int to be used to compare to the datetime from WSJT-X
+ * 
+ * ISO Date format: `YYYY-MM-DDTHH:MM:SS.SSSZ`  EX: `2023-11-14T08:00:00.000Z`
+ * 
+ * int date format: `YYMMDDHHMMSS`              EX: `231114000000`
+ * @param {Date} date 
+ * @returns {Number}
+ */
+function convertDateToString(date) {
+  if (date) {
+    // 2023-11-14T08:00:00.000Z
+    const iso = date.toISOString();
+    return Number(iso.substring(2, 4) + iso.substring(5, 7) + iso.substring(8, 10) + "000000");
+  } else {
+    return null
+  }
+}
+
+function convertStringToDate(string) {
+  if (string) {
+    var date = "20" + string.substring(0, 2)
+      + "-" + string.substring(2, 4)
+      + "-" + string.substring(4, 6)
+      + "T08:00:00.000Z";
+    return new Date(date);
+  } else {
+    return null
+  }
+}
+
 function Home() {
   const [name, setName] = useState("");
   const [freq, setFreq] = useState(0);
 
-  const [date, setDate] = useState(null);
   let today = new Date();
   return (
     <Container
@@ -32,7 +66,7 @@ function Home() {
 
 
       <Row className="">
-        <br/>
+        <br />
         <div className='menu-container'>
           <span>On </span>
           <Select
@@ -52,10 +86,15 @@ function Home() {
             }} />
 
           <span> using FT8 on </span>
-          <Calendar value={date} onChange={(e) => setDate(e.value)} showButtonBar maxDate={today} />
+          <Calendar value={convertStringToDate(getDateQuery())} onChange={(e) => {
+            if (e.value) { 
+              window.location.replace(`?date=${convertDateToString(e.value)/1000000}`) 
+            } else {
+              window.location.replace("?")
+            }}} showButtonBar maxDate={today} />
         </div>
         <div id='map'>
-          <Map frequency={freq} callsign={name} date={date} />
+        <Map frequency={freq} callsign={name} date={getDateQuery()} />
         </div>
       </Row>
 
