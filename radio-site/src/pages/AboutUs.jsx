@@ -41,7 +41,7 @@ const AboutUs = () => {
             <h1>Antoine Nguyen</h1>
             <p>
               <a className="App-link" href="https://20wontons.github.io/">Personal Website</a>
-              I am a Computer Science and Engineering major at UCI, class of 2024.
+              <br/>I am a Computer Science and Engineering major at UCI, class of 2024.
             </p>
             <h1>Isabel Ruiz</h1><p>Description</p>
           </body>
