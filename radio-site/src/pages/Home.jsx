@@ -9,6 +9,7 @@ import { Container, Row } from "react-bootstrap";
 const frequency_list = [
   { value: 0, label: "all bands" },
   { value: 14.074, label: "20m" },
+  { value: 7.075, label: "40m" },
 ];
 
 const geoUrl =
