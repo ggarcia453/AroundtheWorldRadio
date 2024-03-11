@@ -47,7 +47,7 @@ export default class RadiosDAO {
                     .skip(radiosPerPage * page);
             } else {
                 cursor = await radios.aggregate([
-                    { $match: q }, 
+                    { $match: query }, 
                     { $sort: {"date": -1} }, {
                     $group: {
                         originalId: {$first: '$_id'}, 
