@@ -274,6 +274,7 @@ fi
 python3 parse.py $ALL $1
 rm $ALL
 ```
+For more infomation about how our server saves this data after our post requests, please refer to the secion `MONGODB CONFIGURATION`
 
 ## Common Errors
 
