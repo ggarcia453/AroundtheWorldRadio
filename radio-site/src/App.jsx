@@ -53,7 +53,7 @@ function App() {
                 <Route path="/AroundtheWorldRadio/" element={<Home />} />
                 <Route path="/AroundtheWorldRadio/about" element={<AboutUs />} />
                 <Route path='/AroundtheWorldRadio/stats' element={<Stats/>}/>
-                <Route path='/AroundtheWorldRadio/archive' element={<Archive/>}/>
+                {/* <Route path='/AroundtheWorldRadio/archive' element={<Archive/>}/> */}
                 <Route path='/AroundtheWorldRadio/manual' element={<Manual/>}/>
                 </Routes>
                 </Router>

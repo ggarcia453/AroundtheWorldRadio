@@ -37,8 +37,18 @@ const AboutUs = () => {
             <h1>
                 Gabriel Garcia
             </h1>
-            <p>Description</p>
-            <h1>Antoine Nguyen</h1><p>Description</p>
+            <p>
+            <a className="App-link" href="https://github.com/ggarcia453">Personal Github Link</a>
+              <br/>
+            <a className="App-link" href="https://www.linkedin.com/in/gabriel-e-garcia/">Linkedin</a>
+            <br/>
+            I am a 4th year Computer Science and Engineering student with a minor statistics. 
+            </p>
+            <h1>Antoine Nguyen</h1>
+            <p>
+              <a className="App-link" href="https://20wontons.github.io/">Personal Website</a>
+              <br/>I am a Computer Science and Engineering major at UCI, class of 2024.
+            </p>
             <h1>Isabel Ruiz</h1><p>Description</p>
           </body>
         </div>
