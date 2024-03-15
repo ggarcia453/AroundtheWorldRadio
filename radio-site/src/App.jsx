@@ -36,6 +36,7 @@ function App() {
 
   const [date, setDate] = useState(null);
   let today = new Date();
+  today.setDate(today.getDate()-1)
 
   // function setUserChoice(choice) {
   //   freq = choice;
