@@ -3,8 +3,8 @@ import math
 
 
 file="C:/Users/gg311/Downloads/2.22json.csv"
-mstb_coord_lat = -117.8461104
-mstb_coord_lon = 33.6421561
+mstb_coord_lon = -117.8461104
+mstb_coord_lat = 33.6421561
 
 def distance(point1: float, point2: float) -> float:
     '''
