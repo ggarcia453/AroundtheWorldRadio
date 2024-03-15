@@ -281,3 +281,12 @@ For more infomation about how our server saves this data after our post requests
 ### 1. Error: connect ECONNREFUSED
 **CAUSE:** The server machine cannot establish a connection to the MongoDB database due to the network denying access.
 **SOLUTION:** Make sure to add your IP address to the **Network Access** section of MongoDB Atlas.
+
+## ANALYSIS
+This section covers how we performed the analysis and created some of the graphs in the Stats page. The direct source code for 
+it is stored in aroundtheworldradio.r
+### K6AGA Graph/BoxPlot
+We first chose K6AGA as our initial callsign of interest since we had multiple signals captured from them when our antenna was rotated at different angles. We are interested in seeing of the direction of our antenna influences the strength of signal. We filtered the data in our databse then stored it into a csv file to be loaded into R studio. Using R studio and the r code, we generated a graph of thes signals. We noticed that the signals captured when our antenna was rotated north had higher decibel levels. So we tested this relationship with a linear regression model that attempted to predict decibel level based on the direction of our antenna. It confirmed what we beleived, as it showed a linear relationship given our current data and was signifcant, given the model had a p-value of under 0.02. We also created a boxplot to further show that there signicant differences Based on our parsing/webscraping code, we were able to find that the k6AGA callsign is located North of Irvine. So, this naturally leads to the conclusion that rotating our antenna towards the direction of the signal leads to a stronger signal connection. 
+
+### Distance Bargraph
+We were also intersted in seeing if the distance from UCI impacted how many signals we received. we initially anticipated a logirithmaic curve. However ,this was not the case. After downloading the data and loading it into a bragraph, we saw an uneven distribution of signals with a variety of distances. This showed to us that distance did not impact how many signals we recieved. We also created an additionall scatterplot to test distance's relationship to decibel level and it showed that the distance did not affect the decibel level directly. So, we can came to the conlsuion that based on this data, we cannot conclude a relationship between distance and either number of radios recieved or decibel level. 
