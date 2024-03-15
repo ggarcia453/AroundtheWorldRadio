@@ -51,7 +51,7 @@ const AboutUs = () => {
             </p>
             <h1>Isabel Ruiz</h1>
             <p>
-              <a className="App-link" href="www.linkedin.com/in/idruiz39">LinkedIn</a>
+              <a className="App-link" href="https://www.linkedin.com/in/idruiz39">LinkedIn</a>
               <br/>I am a 4th year Computer Science and Engineering student at UCI.
             </p>
           </body>
