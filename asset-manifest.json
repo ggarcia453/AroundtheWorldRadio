@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/AroundtheWorldRadio/static/css/main.2ee80f14.css",
-    "main.js": "/AroundtheWorldRadio/static/js/main.8d6d8665.js",
+    "main.js": "/AroundtheWorldRadio/static/js/main.85f88a7b.js",
     "static/js/787.8b17072b.chunk.js": "/AroundtheWorldRadio/static/js/787.8b17072b.chunk.js",
     "static/media/Distance_bar.png": "/AroundtheWorldRadio/static/media/Distance_bar.16c05b98d5cb08e96ae9.png",
     "static/media/K6AGA.png": "/AroundtheWorldRadio/static/media/K6AGA.ede9f23f70b184ec1d07.png",
@@ -9,11 +9,11 @@
     "static/media/Distance_scatter.png": "/AroundtheWorldRadio/static/media/Distance_scatter.7f342e8f2f907eb7f2d3.png",
     "index.html": "/AroundtheWorldRadio/index.html",
     "main.2ee80f14.css.map": "/AroundtheWorldRadio/static/css/main.2ee80f14.css.map",
-    "main.8d6d8665.js.map": "/AroundtheWorldRadio/static/js/main.8d6d8665.js.map",
+    "main.85f88a7b.js.map": "/AroundtheWorldRadio/static/js/main.85f88a7b.js.map",
     "787.8b17072b.chunk.js.map": "/AroundtheWorldRadio/static/js/787.8b17072b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2ee80f14.css",
-    "static/js/main.8d6d8665.js"
+    "static/js/main.85f88a7b.js"
   ]
 }
